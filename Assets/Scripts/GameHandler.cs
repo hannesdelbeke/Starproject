@@ -12,7 +12,7 @@ public class GameHandler : MonoBehaviour {
 	public int connectedStars; //if 0 earth is the selectedstar
 	public GameObject selectionSprite;
 	public GameObject rangeSprite ;
-	public int probes;
+	public int probesAmount = 6 ;
 	public GameObject probePrefab;
 	public AudioClip getStarSound;
 	public AudioClip selectStarSound;
@@ -47,7 +47,7 @@ public class GameHandler : MonoBehaviour {
 				print(inReachOfSelected);
 				//if in range connect
 				if (inReachOfSelected.Contains(starInputComp) ){
-					if(!probeInSpace) {
+					if(!probeInSpace && probesAmount>0) {
 						// Launch probe
 						probeInSpace = true;
 						Debug.Log ("Trying to launch probe");
@@ -55,6 +55,7 @@ public class GameHandler : MonoBehaviour {
 						newProbe = Instantiate(probePrefab, SelectedStar.transform.position, Quaternion.identity) as GameObject;
 						newProbe.GetComponent<Probe>().GoToStar(starInput);
 						// Make sure to activate the connected star
+						probesAmount -= 1;
 					}
 				}
 			}
