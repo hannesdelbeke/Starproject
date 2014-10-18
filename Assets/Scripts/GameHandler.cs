@@ -17,6 +17,7 @@ public class GameHandler : MonoBehaviour {
 	public AudioClip getStarSound;
 	public AudioClip selectStarSound;
 	public List<Star> selectedStars;
+	public bool probeInSpace = false;
 
 	void Start() {
 
@@ -45,13 +46,16 @@ public class GameHandler : MonoBehaviour {
 				print("in reach of selected");
 				print(inReachOfSelected);
 				//if in range connect
-				if (inReachOfSelected.Contains(starInputComp) ){	
-					// Launch probe
-					Debug.Log ("Trying to launch probe");
-					GameObject newProbe;
-					newProbe = Instantiate(probePrefab, SelectedStar.transform.position, Quaternion.identity) as GameObject;
-					newProbe.GetComponent<Probe>().GoToStar(starInput);
-					// Make sure to activate the connected star
+				if (inReachOfSelected.Contains(starInputComp) ){
+					if(!probeInSpace) {
+						// Launch probe
+						probeInSpace = true;
+						Debug.Log ("Trying to launch probe");
+						GameObject newProbe;
+						newProbe = Instantiate(probePrefab, SelectedStar.transform.position, Quaternion.identity) as GameObject;
+						newProbe.GetComponent<Probe>().GoToStar(starInput);
+						// Make sure to activate the connected star
+					}
 
 				}
 			}

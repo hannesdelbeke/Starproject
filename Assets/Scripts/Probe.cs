@@ -27,10 +27,9 @@ public class Probe : MonoBehaviour {
 
 	void ProbeReachedNewStar() {
 
-		Debug.Log ("Reached the new star! :)");
-
 		// Claim the new star
 		InputManaging.captureStar(destinationStar);
+		InputManaging.probeInSpace = false;
 
 		Destroy (this.gameObject);
 	}
