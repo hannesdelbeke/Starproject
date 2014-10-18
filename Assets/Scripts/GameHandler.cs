@@ -57,7 +57,6 @@ public class GameHandler : MonoBehaviour {
 						// Make sure to activate the connected star
 						probesAmount -= 1;
 					}
-
 				}
 			}
 		}
