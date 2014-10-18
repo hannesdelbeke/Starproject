@@ -31,6 +31,8 @@ public class Probe : MonoBehaviour {
 		InputManaging.captureStar(destinationStar);
 		InputManaging.probeInSpace = false;
 
+		InputManaging.setSelectedStar (destinationStar);
+
 		Destroy (this.gameObject);
 	}
 
