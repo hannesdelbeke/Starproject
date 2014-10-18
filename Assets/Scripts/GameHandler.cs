@@ -56,7 +56,6 @@ public class GameHandler : MonoBehaviour {
 						newProbe.GetComponent<Probe>().GoToStar(starInput);
 						// Make sure to activate the connected star
 					}
-
 				}
 			}
 		}
