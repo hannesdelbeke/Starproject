@@ -88,6 +88,7 @@ public class GameHandler : MonoBehaviour {
 		
 		rangeSprite.SetActive(true);
 		selectionSprite.SetActive(true);
+		selectionSprite.GetComponent<activateSelection>().resetEffect();
 
 		SelectedStar = selStar;
 		selectionSprite.transform.position = SelectedStar.transform.position;
@@ -102,10 +103,8 @@ public class GameHandler : MonoBehaviour {
 			selectedStars[i].selSprite.SetActive(false);
 		}
 		selectedStars.Clear();//clear selected stars
-		
-		print("test1");
+
 		List<Star> inReach = getStarsInReach(selStar) as List<Star>;	
-		print("test2");
 		for (var i = 0; i < inReach.Count; i++) {
 			if (inReach[i].selSprite!= null){
 
@@ -125,6 +124,7 @@ public class GameHandler : MonoBehaviour {
 		//targetStar.renderer.material.color = Color.red;
 		//targetStar.GetComponent<Star>().connected = true; 
 		targetStar.GetComponent<Star>().connectStar(); 
+		probesAmount+= targetStar.GetComponent<Star>().getBonusProbes();
 		//audio.PlayOneShot(getStarSound, 1);
 	}
 

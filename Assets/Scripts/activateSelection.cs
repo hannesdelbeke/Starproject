@@ -5,13 +5,13 @@ public class activateSelection : MonoBehaviour {
 
 
 	public float startScale;
-	public float FinalScale;
-	private float workScale;
+	private float finalScale = -1;
 
 	public float scaletime = 1 ;
 
 	// Use this for initialization
 	void Start () {
+
 		resetEffect ();
 	}
 
@@ -19,18 +19,20 @@ public class activateSelection : MonoBehaviour {
 	void Update() {		
 		//tween
 
-		//transform.localScale = new Vector3 (workScale,workScale,workScale);
-
-		Vector3 tweenScale = new Vector3 (FinalScale,FinalScale,FinalScale);
-		iTween.ScaleTo(gameObject, iTween.Hash( "scale",tweenScale, "time", scaletime, "easetype", iTween.EaseType.easeInBack));
 
 	}
-	void resetEffect (){
+	public void resetEffect (){
 	// put scale on 0
+		if (finalScale<=0){
+			finalScale = transform.localScale.x;
+			print (finalScale);
+		}
+
 		Vector3 startScaleVector= new Vector3 (startScale,startScale,startScale);
 		transform.localScale = startScaleVector;
-		//workScale = startScale;
-
+		
+		Vector3 tweenScale = new Vector3 (finalScale,finalScale,finalScale);
+		iTween.ScaleTo(gameObject, iTween.Hash( "scale",tweenScale, "time", scaletime, "easetype", iTween.EaseType.easeOutBack));
 	//put color on dark for fade
 
 	}

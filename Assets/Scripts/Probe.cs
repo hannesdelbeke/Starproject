@@ -6,7 +6,7 @@ public class Probe : MonoBehaviour {
 	public float speed;
 	public GameHandler InputManaging;
 	public GameObject destinationStar;
-
+	public Material lineMat ; 
 	LineRenderer lineRenderer;
 	Vector3 startPosition;  // Used to copy the LineRenderer at the end
 
@@ -16,9 +16,7 @@ public class Probe : MonoBehaviour {
 		InputManaging = GameObject.Find("GameHandlers").GetComponent<GameHandler>();
 
 		lineRenderer = gameObject.AddComponent<LineRenderer>();
-		lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
-		lineRenderer.SetColors(Color.cyan, Color.magenta);
-		lineRenderer.SetWidth(0.2F, 0.2F);
+		setLineGraphics(lineRenderer);
 		lineRenderer.SetVertexCount (2);
 		lineRenderer.SetPosition (0, this.transform.position);
 		lineRenderer.SetPosition (1, this.transform.position);
@@ -55,14 +53,18 @@ public class Probe : MonoBehaviour {
 		newLineRender.gameObject.transform.parent = lineRenders.transform;
 
 		clonedLinerender = newLineRender.AddComponent<LineRenderer> ();
-		clonedLinerender.material = new Material(Shader.Find("Particles/Additive"));
-		clonedLinerender.SetColors(Color.cyan, Color.magenta);
-		clonedLinerender.SetWidth(0.2F, 0.2F);
+		setLineGraphics(clonedLinerender);
 		clonedLinerender.SetVertexCount (2);
 		clonedLinerender.SetPosition (0, startPosition);
 		clonedLinerender.SetPosition (1, this.transform.position);
 
 		Destroy (this.gameObject);
+	}
+
+	void setLineGraphics (LineRenderer lineR){
+		lineR.material = lineMat;// new Material(Shader.Find("Particles/Additive"));
+		lineR.SetColors(Color.cyan, Color.magenta);
+		lineR.SetWidth(0.2F, 0.2F);
 	}
 
 }
