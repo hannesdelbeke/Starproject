@@ -91,9 +91,8 @@ public class GameHandler : MonoBehaviour {
 		for (var i = 0; i < hitColliders.Length; i++) {
 			//hitColliders[i].SendMessage("AddDamage");
 
-			//print (hitColliders[i]);
-			if (hitColliders[i].gameObject != SelectedStar)
-			hitColliders[i].gameObject.renderer.material.color = Color.blue; //shows who is in range
+			//if (hitColliders[i].gameObject != SelectedStar)
+			//hitColliders[i].gameObject.renderer.material.color = Color.blue; //shows who is in range
 
 
 			GameObject c = hitColliders[i].gameObject;
