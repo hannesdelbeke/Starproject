@@ -11,6 +11,7 @@ public class Star : MonoBehaviour {
 	public float age;
 	public float range  ;
 	public GameObject selSprite;
+	public GameObject capSprite;
 	public float energy
 	{	  
         get
@@ -97,12 +98,19 @@ public class Star : MonoBehaviour {
     void Awake()	
     {
         //Setup();
-
+		
 		foreach (Transform child in transform){
 			if (child.name == "SelectionSprite"){
 				// the code here is called
 				// for each child named Bone
 				selSprite = child.gameObject;
+			}
+		}
+		foreach (Transform child in transform){
+			if (child.name == "capturedSprite"){
+				// the code here is called
+				// for each child named Bone
+				capSprite = child.gameObject;
 			}
 		}
     }
@@ -218,9 +226,14 @@ public class Star : MonoBehaviour {
 			line.material = this.gameObject.renderer.material;
 			line.renderer.enabled = true;
 			line.SetPosition(0, _star.gameObject.transform.position);
-			line.SetPosition(1, this.gameObject.transform.position);
-			
+			line.SetPosition(1, this.gameObject.transform.position);		
 		}
+	}
+
+	public void connectStar(){
+		connected = true;
+		if(capSprite)
+		capSprite.SetActive(true);
 	}
 
 }

@@ -16,6 +16,7 @@ public class GameHandler : MonoBehaviour {
 	public GameObject probePrefab;
 	public AudioClip getStarSound;
 	public AudioClip selectStarSound;
+	public List<Star> selectedStars;
 
 	void Start() {
 
@@ -80,15 +81,26 @@ public class GameHandler : MonoBehaviour {
 		SelectedStar = selStar;
 		selectionSprite.transform.position = SelectedStar.transform.position;
 		rangeSprite.transform.position = SelectedStar.transform.position;
+
 		float _scale = SelectedStar.GetComponent<Star>().range;
 		_scale /= 5;
 		rangeSprite.transform.localScale = new Vector3(_scale,_scale,_scale);
 		audio.PlayOneShot(selectStarSound, 1); 
 
+		for (var i = 0; i < selectedStars.Count ; i++) {
+			selectedStars[i].selSprite.SetActive(false);
+		}
+
+		selectedStars.Clear();//clear selected stars
+
 		List<Star> inReach = getStarsInReach(selStar) as List<Star>;	
 		for (var i = 0; i < inReach.Count; i++) {
 			if (inReach[i].selSprite!= null){
-				inReach[i].selSprite.SetActive(true);
+
+				if(inReach[i].connected == false){
+					inReach[i].selSprite.SetActive(true);
+					selectedStars.Add(inReach[i]); 
+				}
 			}
 		}
 			//all el in reach activate ui shit
@@ -99,7 +111,8 @@ public class GameHandler : MonoBehaviour {
 	public void captureStar (GameObject targetStar) {
 		setSelectedStar( targetStar);
 		targetStar.renderer.material.color = Color.red;
-		targetStar.GetComponent<Star>().connected = true;
+		//targetStar.GetComponent<Star>().connected = true; 
+		targetStar.GetComponent<Star>().connectStar(); 
 		//audio.PlayOneShot(getStarSound, 1);
 	}
 
