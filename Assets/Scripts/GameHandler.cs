@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(AudioSource))]
 public class GameHandler : MonoBehaviour {
 
 	// get input touch
@@ -13,6 +14,8 @@ public class GameHandler : MonoBehaviour {
 	public GameObject rangeSprite ;
 	public int probes;
 	public GameObject probePrefab;
+	public AudioClip getStarSound;
+	public AudioClip selectStarSound;
 
 	public void clickStar(GameObject starInput)
 	{ 
@@ -45,6 +48,7 @@ public class GameHandler : MonoBehaviour {
 				setSelectedStar( starInput);
 				starInput.renderer.material.color = Color.red;
 				starInputComp.connected = true;
+				//audio.PlayOneShot(getStarSound, 1);
 			}
 		}
 
@@ -78,6 +82,7 @@ public class GameHandler : MonoBehaviour {
 		float _scale = SelectedStar.GetComponent<Star>().range;
 		_scale /= 5;
 		rangeSprite.transform.localScale = new Vector3(_scale,_scale,_scale);
+		audio.PlayOneShot(selectStarSound, 1); 
 	}
 
 	public List<Star> getStarsInReach (GameObject centerStar)
