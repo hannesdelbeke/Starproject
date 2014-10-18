@@ -10,9 +10,11 @@ public class GameHandler : MonoBehaviour {
 	public GameObject EarthStar;
 	public int connectedStars; //if 0 earth is the selectedstar
 	public GameObject selectionSprite;
+	public GameObject rangeSprite ;
+	public int probes;
 
 	public void clickStar(GameObject starInput)
-	{
+	{ 
 		Star starInputComp = starInput.GetComponent<Star>()as Star;
 		//print ( " currently selected star");
 		//print (selectedStar);
@@ -62,6 +64,10 @@ public class GameHandler : MonoBehaviour {
 	{
 		SelectedStar = selStar;
 		selectionSprite.transform.position = SelectedStar.transform.position;
+		rangeSprite.transform.position = SelectedStar.transform.position;
+		float _scale = SelectedStar.GetComponent<Star>().range;
+		_scale /= 5;
+		rangeSprite.transform.localScale = new Vector3(_scale,_scale,_scale);
 	}
 
 	public List<Star> getStarsInReach (GameObject centerStar)
@@ -70,7 +76,8 @@ public class GameHandler : MonoBehaviour {
 
 		Vector3 center = centerStar.transform.position;
 		float radius = centerStar.GetComponent<Star>().range;		
-		var hitColliders = Physics.OverlapSphere(center, radius);		
+		var hitColliders = Physics.OverlapSphere(center, radius);	
+
 		for (var i = 0; i < hitColliders.Length; i++) {
 			//hitColliders[i].SendMessage("AddDamage");
 
