@@ -3,13 +3,16 @@ using System.Collections;
 
 public class CameraControls: MonoBehaviour {
 
-	public float smoothing = 5f;
 	GameHandler InputManaging;
 	Vector3 cameraOffset;
+
+	public float smoothing = 0.8f; // Set it under 1.0 to have a slow movement
 
 	// Use this for initialization
 	void Start () {
 		InputManaging = GameObject.Find("GameHandlers").GetComponent<GameHandler>();
+
+		// Save the Camera offset at the start
 		cameraOffset = this.transform.position; 
 	}
 	
@@ -19,8 +22,8 @@ public class CameraControls: MonoBehaviour {
 		//ip right click or 2 touch pan camera
 		// add maximum and minimum
 		//optionally add zoom
-		//Debug.Log ("selected star: " + InputManaging.SelectedStar.transform.position);
-		//this.transform.position = InputManaging.SelectedStar.transform.position + cameraOffset;
+
+		// Repositions the camera torwards the selected star
 		transform.position = Vector3.Lerp (transform.position, InputManaging.SelectedStar.transform.position + cameraOffset, smoothing * Time.deltaTime);
 	}
 }
