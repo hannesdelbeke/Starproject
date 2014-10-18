@@ -17,6 +17,11 @@ public class GameHandler : MonoBehaviour {
 	public AudioClip getStarSound;
 	public AudioClip selectStarSound;
 
+	void Start() {
+
+		//SelectedStar = GameObject.Find ("");
+	}
+
 	public void clickStar(GameObject starInput)
 	{ 
 		Star starInputComp = starInput.GetComponent<Star>()as Star;
