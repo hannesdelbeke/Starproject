@@ -24,6 +24,7 @@ public class CameraControls: MonoBehaviour {
 		//optionally add zoom
 
 		// Repositions the camera torwards the selected star
-		transform.position = Vector3.Lerp (transform.position, InputManaging.SelectedStar.transform.position + cameraOffset, smoothing * Time.deltaTime);
+		if(InputManaging.SelectedStar)
+			transform.position = Vector3.Lerp (transform.position, InputManaging.SelectedStar.transform.position + cameraOffset, smoothing * Time.deltaTime);
 	}
 }
