@@ -30,4 +30,4 @@ obj/
 ehthumbs.db
 Thumbs.db
 
-Assets/Scripts/StarGenerator.cs
+*.apk
