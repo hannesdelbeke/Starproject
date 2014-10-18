@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Probe : MonoBehaviour {
 
-	public float speedInSeconds;
+	public float speed;
 	public GameHandler InputManaging;
 	public GameObject destinationStar;
 
@@ -21,16 +21,15 @@ public class Probe : MonoBehaviour {
 */
 	public void GoToStar(GameObject destination) {
 
-		iTween.MoveTo(this.gameObject, iTween.Hash( "position", destination.transform.position, "looktarget", destination.transform.position, "time", speedInSeconds, "oncomplete", "ProbeReachedNewStar", "easetype", iTween.EaseType.linear));
+		iTween.MoveTo(this.gameObject, iTween.Hash( "position", destination.transform.position, "looktarget", destination.transform.position, "speed", speed, "oncomplete", "ProbeReachedNewStar", "easetype", iTween.EaseType.linear));
 		destinationStar = destination;
 	}
 
 	void ProbeReachedNewStar() {
 
-		Debug.Log ("Reached the new star! :)");
-
 		// Claim the new star
 		InputManaging.captureStar(destinationStar);
+		InputManaging.probeInSpace = false;
 
 		Destroy (this.gameObject);
 	}
