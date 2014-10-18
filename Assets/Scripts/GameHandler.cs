@@ -45,10 +45,6 @@ public class GameHandler : MonoBehaviour {
 				newProbe.GetComponent<Probe>().GoToStar(starInput);
 				// Make sure to activate the connected star
 
-				setSelectedStar( starInput);
-				starInput.renderer.material.color = Color.red;
-				starInputComp.connected = true;
-				//audio.PlayOneShot(getStarSound, 1);
 			}
 		}
 
@@ -93,8 +89,13 @@ public class GameHandler : MonoBehaviour {
 			//all el in reach activate ui shit
 			// tween
 			// deselect when unneeded
+	}
 
-			
+	public void captureStar (GameObject targetStar) {
+		setSelectedStar( targetStar);
+		targetStar.renderer.material.color = Color.red;
+		targetStar.GetComponent<Star>().connected = true;
+		//audio.PlayOneShot(getStarSound, 1);
 	}
 
 	public List<Star> getStarsInReach (GameObject centerStar)
