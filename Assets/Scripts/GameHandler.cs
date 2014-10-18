@@ -83,6 +83,18 @@ public class GameHandler : MonoBehaviour {
 		_scale /= 5;
 		rangeSprite.transform.localScale = new Vector3(_scale,_scale,_scale);
 		audio.PlayOneShot(selectStarSound, 1); 
+
+		List<Star> inReach = getStarsInReach(selStar) as List<Star>;	
+		for (var i = 0; i < inReach.Count; i++) {
+			if (inReach[i].selSprite!= null){
+				inReach[i].selSprite.SetActive(true);
+			}
+		}
+			//all el in reach activate ui shit
+			// tween
+			// deselect when unneeded
+
+			
 	}
 
 	public List<Star> getStarsInReach (GameObject centerStar)

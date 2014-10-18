@@ -10,6 +10,7 @@ public class Star : MonoBehaviour {
 	public bool connected;
 	public float age;
 	public float range  ;
+	public GameObject selSprite;
 	public float energy
 	{	  
         get
@@ -93,9 +94,17 @@ public class Star : MonoBehaviour {
         }
     }
 
-    void Awake()
+    void Awake()	
     {
         //Setup();
+
+		foreach (Transform child in transform){
+			if (child.name == "SelectionSprite"){
+				// the code here is called
+				// for each child named Bone
+				selSprite = child.gameObject;
+			}
+		}
     }
 
     void Setup()
