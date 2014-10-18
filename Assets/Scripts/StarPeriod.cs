@@ -15,11 +15,12 @@ public class StarPeriod : MonoBehaviour {
 
 	//Get the orbital period of a planet, drawn from a random distribution
 	//that approximates real Kepler data
-	double GetPeriodInDays () {
+
+	public float GetPeriodInDays () {
 		while (true) {
-			float r1 = Random.value;
-			float r2 = Random.value*35.0;
-			float periodDistribution = 0.5 * UnityEngine.Mathf.Exp (-r2 * 0.6) - r2 * 0.0005 + 0.02;
+			float r1 = (float)(Random.value);
+			float r2 = (float)(Random.value*35.0f);
+			float periodDistribution = (float)(0.5f * UnityEngine.Mathf.Exp (-r2 * 0.6f) - r2 * 0.0005d + 0.02f);
 			if (r1 < periodDistribution) {
 				return r2;
 			}
