@@ -12,6 +12,7 @@ public class GameHandler : MonoBehaviour {
 	public GameObject selectionSprite;
 	public GameObject rangeSprite ;
 	public int probes;
+	public GameObject probePrefab;
 
 	public void clickStar(GameObject starInput)
 	{ 
@@ -24,6 +25,7 @@ public class GameHandler : MonoBehaviour {
 		{
 			//if part of network select
 			setSelectedStar( starInput);
+
 		}
 		//if not part of network see if in range
 		else {			
@@ -32,6 +34,14 @@ public class GameHandler : MonoBehaviour {
 			print(inReachOfSelected);
 			//if in range connect
 			if (inReachOfSelected.Contains(starInputComp) ){
+
+				// Launch probe
+				Debug.Log ("Trying to launch probe");
+				GameObject newProbe;
+				newProbe = Instantiate(probePrefab, SelectedStar.transform.position, Quaternion.identity) as GameObject;
+				newProbe.GetComponent<Probe>().GoToStar(starInput);
+				// Make sure to activate the connected star
+
 				setSelectedStar( starInput);
 				starInput.renderer.material.color = Color.red;
 				starInputComp.connected = true;
