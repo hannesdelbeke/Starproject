@@ -9,8 +9,8 @@ public class UI : MonoBehaviour {
 	public Texture2D probeGUITexture;
 	public int probesLeftOffset = 10;
 	public int probesTopOffset = 10;
-	public float probeSize = 5f;
-	public float probeSpacing = 1f;
+	public float probeSize = 0.05f;
+	public float probeSpacing = 0.01f;
 
 	float probeSizeFromPercentage;
 	float probeSpacingFromPercentage;
@@ -20,19 +20,16 @@ public class UI : MonoBehaviour {
 	
 		InputManaging = GameObject.Find("GameHandlers").GetComponent<GameHandler>();
 
-		probeSizeFromPercentage =  (float)Screen.width / probeSize;
-		probeSpacingFromPercentage =  (float)Screen.width / probeSpacing;
-		Debug.Log ("probeSizeFromPercentage: " + probeSizeFromPercentage + " probeSpacingFromPercentage: " + probeSpacingFromPercentage);
-
+		probeSizeFromPercentage =  Screen.width * probeSize / 100;
+		probeSpacingFromPercentage =  (float)Screen.width * probeSpacing / 100;
 	}
 	
 	void OnGUI() {
 		
 		for (int i = 0; i < InputManaging.probesAmount; i++) {
 			
-			GUI.Label (new Rect ( 10 + i*50, 10, 50, 50), probeGUITexture);
-			
-			
+			GUI.Label (new Rect ( probeSpacingFromPercentage + i*probeSizeFromPercentage, probeSpacingFromPercentage/2, probeSizeFromPercentage, probeSizeFromPercentage), probeGUITexture);
+
 		}
 		
 	}
