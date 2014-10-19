@@ -135,6 +135,7 @@ public class GameHandler : MonoBehaviour {
 		targetStar.GetComponent<Star>().connectStar(); 
 		probesAmount+= targetStar.GetComponent<Star>().getBonusProbes();
 		score += 1; 
+		GetComponent<UI>().score = score;
 		if(targetStar.GetComponent<Star>().nextLevel )
 		{
 			Application.LoadLevel(nextLevel);
