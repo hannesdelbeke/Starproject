@@ -30,7 +30,7 @@ public class MainMenu : MonoBehaviour {
 		buttonWidth = Convert.ToInt32( Screen.width * 0.3f );
 		buttonHeight = Convert.ToInt32( buttonWidth * 0.2112676056338f );
 		buttonsLeftSide = Convert.ToInt32( Screen.width * 0.36f );
-		leftMultiplier = 2f; 
+		leftMultiplier = 3f; 
 //		float screenRatio = Screen.width / Screen.height;
 //		if (screenRatio >= 1.3) {
 //			topOffset = starOffset * 3;
@@ -68,11 +68,11 @@ public class MainMenu : MonoBehaviour {
 			Application.LoadLevel(3);
 		}
 
-		//	if (GUI.Button (new Rect (buttonsLeftSide, buttonsLeftSide/3.5f + buttonHeight*3 + Screen.height * 0.03f, buttonWidth, buttonHeight), button4, GUIStyle.none)) {
-//			Debug.Log ("Clicked the button with an image");
-//		}
+		if (GUI.Button (new Rect (buttonsLeftSide, buttonsLeftSide/leftMultiplier + buttonHeight*3 + Screen.height * 0.03f, buttonWidth, buttonHeight), button4, GUIStyle.none)) {
+			Application.LoadLevel(4);
+		}
 
-		if (GUI.Button (new Rect (buttonsLeftSide, buttonsLeftSide/leftMultiplier + buttonHeight*3 + Screen.height * 0.03f, buttonWidth, buttonHeight), buttonExit, GUIStyle.none)) {
+		if (GUI.Button (new Rect (buttonsLeftSide, buttonsLeftSide/leftMultiplier + buttonHeight*4 + Screen.height * 0.04f, buttonWidth, buttonHeight), buttonExit, GUIStyle.none)) {
 			Application.Quit();
 		}
 
