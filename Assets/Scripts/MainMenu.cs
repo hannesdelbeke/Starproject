@@ -30,7 +30,7 @@ public class MainMenu : MonoBehaviour {
 		buttonWidth = Convert.ToInt32( Screen.width * 0.3f );
 		buttonHeight = Convert.ToInt32( buttonWidth * 0.2112676056338f );
 		buttonsLeftSide = Convert.ToInt32( Screen.width * 0.36f );
-		leftMultiplier = 3f; 
+		leftMultiplier = 3f; // Use 3f for webplayer and 5f for 16:9
 //		float screenRatio = Screen.width / Screen.height;
 //		if (screenRatio >= 1.3) {
 //			topOffset = starOffset * 3;
