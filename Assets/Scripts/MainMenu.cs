@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class MainMenu : MonoBehaviour {
 
@@ -10,23 +11,23 @@ public class MainMenu : MonoBehaviour {
 	public Texture button4;
 	public Texture buttonExit;
 
-	float starHeight;
-	float starWidth;
-	float starOffset;
+	int starHeight;
+	int starWidth;
+	int starOffset;
 
-	float buttonWidth;
-	float buttonHeight;
-	float buttonsLeftSide;
+	int buttonWidth;
+	int buttonHeight;
+	int buttonsLeftSide;
 
 	// Use this for initialization
 	void Start () {
 	
-		starHeight = Screen.height * 0.8f;
-		starWidth = starHeight * 0.57014590347924f; // 508x891
-		starOffset = Screen.height * 0.1f;
-		buttonWidth = Screen.width * 0.3f;
-		buttonHeight = buttonWidth * 0.2112676056338f;
-		buttonsLeftSide = Screen.width * 0.4f;
+		starHeight = Convert.ToInt32( Screen.height * 0.8f );
+		starWidth = Convert.ToInt32( starHeight * 0.57014590347924f ); // 508x891
+		starOffset = Convert.ToInt32( Screen.height * 0.1f );
+		buttonWidth = Convert.ToInt32( Screen.width * 0.3f );
+		buttonHeight = Convert.ToInt32( buttonWidth * 0.2112676056338f );
+		buttonsLeftSide = Convert.ToInt32( Screen.width * 0.4f );
 
 		Debug.Log ("starHeight: " + starHeight);
 		Debug.Log ("buttonWidth: " + buttonWidth + " buttonHeight: " + buttonHeight);
@@ -61,7 +62,10 @@ public class MainMenu : MonoBehaviour {
 		if (GUI.Button (new Rect (buttonsLeftSide, buttonsLeftSide/2 + buttonHeight*4 + Screen.height * 0.04f, buttonWidth, buttonHeight), buttonExit, GUIStyle.none)) {
 			Application.Quit();
 		}
-		
+
+
+
+
 	}
 	
 	
