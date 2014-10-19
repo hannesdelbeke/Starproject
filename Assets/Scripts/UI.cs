@@ -34,17 +34,15 @@ public class UI : MonoBehaviour {
 			
 			//GUI.Label (new Rect( probeSpacingFromPercentage + i*probeSizeFromPercentage, probeSpacingFromPercentage/2, probeSizeFromPercentage, probeSizeFromPercentage), probeGUITexture);
 			GUI.Label (new Rect (probeSpacingFromPercentage + i*probeSizeFromPercentage, Screen.height - (probeSpacingFromPercentage/2 + probeSizeFromPercentage), probeSizeFromPercentage, probeSizeFromPercentage), probeGUITexture);
-
-
-			string stringScore = score.ToString(); 
-			GUI.Label (new Rect( Screen.width /5*4, probeSpacingFromPercentage/2, probeSizeFromPercentage*10, probeSizeFromPercentage*10) ,stringScore , scoreFont); 
-
+		}	
 		// Menu button
 		if (GUI.Button (new Rect (probeSpacingFromPercentage, probeSpacingFromPercentage, probeSizeFromPercentage, probeSizeFromPercentage), menuButton, GUIStyle.none)) {
 			Application.LoadLevel(0);
 		}
-			
-		}			
+		
+		string stringScore = score.ToString(); 
+		GUI.Label (new Rect( Screen.width /20*19, probeSpacingFromPercentage/2, probeSizeFromPercentage*10, probeSizeFromPercentage*10) ,stringScore , scoreFont); 
+
 	}
 
 }
