@@ -82,11 +82,15 @@ public class GameHandler : MonoBehaviour {
 		}
 		*/
 	}
-
+		
 	public void setSelectedStar(GameObject selStar)
 	{
+		float _scale = selStar.GetComponent<Star>().range;
+		_scale /= 5;
 		
 		rangeSprite.SetActive(true);
+		rangeSprite.GetComponent<activateSelection>().setRangeScale(_scale);
+		rangeSprite.GetComponent<activateSelection>().resetEffect();
 		selectionSprite.SetActive(true);
 		selectionSprite.GetComponent<activateSelection>().resetEffect();
 
@@ -94,8 +98,6 @@ public class GameHandler : MonoBehaviour {
 		selectionSprite.transform.position = SelectedStar.transform.position;
 		rangeSprite.transform.position = SelectedStar.transform.position;
 
-		float _scale = SelectedStar.GetComponent<Star>().range;
-		_scale /= 5;
 		rangeSprite.transform.localScale = new Vector3(_scale,_scale,_scale);
 		audio.PlayOneShot(selectStarSound, 1); 
 
