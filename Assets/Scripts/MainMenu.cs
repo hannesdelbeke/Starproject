@@ -19,6 +19,8 @@ public class MainMenu : MonoBehaviour {
 	int buttonHeight;
 	int buttonsLeftSide;
 
+	int topOffset;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -29,6 +31,17 @@ public class MainMenu : MonoBehaviour {
 		buttonHeight = Convert.ToInt32( buttonWidth * 0.2112676056338f );
 		buttonsLeftSide = Convert.ToInt32( Screen.width * 0.4f );
 
+		float screenRatio = Screen.width / Screen.height;
+		if (screenRatio >= 1.3) {
+			topOffset = starOffset * 3;
+		}
+		if (screenRatio >= 1.5) {
+			topOffset = starOffset * 5;
+		}
+		if (screenRatio >= 1.7) {
+			topOffset = starOffset * 8;
+		}
+		
 		Debug.Log ("starHeight: " + starHeight);
 		Debug.Log ("buttonWidth: " + buttonWidth + " buttonHeight: " + buttonHeight);
 
@@ -43,7 +56,7 @@ public class MainMenu : MonoBehaviour {
 
 		GUI.Label (new Rect ( 0, starOffset, starWidth, starHeight), mainMenuStar);
 
-		if (GUI.Button (new Rect (buttonsLeftSide, buttonsLeftSide/2, buttonWidth, buttonHeight), button1, GUIStyle.none)) {
+		if (GUI.Button (new Rect (buttonsLeftSide, (buttonsLeftSide/2) - topOffset, buttonWidth, buttonHeight), button1, GUIStyle.none)) {
 			Application.LoadLevel(1);
 		}
 
