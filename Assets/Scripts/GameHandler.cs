@@ -9,10 +9,10 @@ public class GameHandler : MonoBehaviour {
 	// get input touch
 	//if collides star set active
 	public GameObject SelectedStar; // each star keeps track of whats within range // if moving star then fire calculate range function on selection and keep doing it while selected
-	private GameObject EarthStar;
+	//private GameObject EarthStar;
 	public int connectedStars; //if 0 earth is the selectedstar
-	public GameObject selectionSprite;
-	public GameObject rangeSprite ;
+	private GameObject selectionSprite;
+	private GameObject rangeSprite ;
 	public int probesAmount = 6 ;
 	public GameObject probePrefab;
 	public AudioClip getStarSound;
@@ -24,8 +24,7 @@ public class GameHandler : MonoBehaviour {
 	void Start() {
 		rangeSprite.SetActive(false);
 		selectionSprite.SetActive(false);
-		EarthStar = GameObject.Find("StarEarth");
-		//SelectedStar = GameObject.Find ("");
+		//EarthStar = GameObject.Find("StarEarth");
 		
 		selectionSprite = Instantiate(selectionSprite,transform.position, Quaternion.identity) as GameObject;
 		rangeSprite = Instantiate(rangeSprite,transform.position, Quaternion.identity) as GameObject;
