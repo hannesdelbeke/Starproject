@@ -12,6 +12,7 @@ public class blink : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		blinkRate = GetPeriodInDays();
+		blinkRate+=0.5f;
 		goUp = true;
 		
 		// renderer.material.SetColor ("_TintColor", Color);
@@ -38,13 +39,6 @@ public class blink : MonoBehaviour {
 		else{			
 			workAlpha -= Time.deltaTime/blinkRate;
 		}
-		/*
-		if(){
-			
-			
-		}
-
-*/
 		if(workAlpha<0){
 			workAlpha=0	;		
 		}
@@ -52,51 +46,7 @@ public class blink : MonoBehaviour {
 			workAlpha=1;			
 		}
 		blinkColor.a = workAlpha;
-		//Color temp = Color.white;
 		renderer.material.SetColor ("_TintColor", blinkColor);
-		//float blinkColorA = blinkColor.a;
-
-
-
-
-
-
-
-
-
-		/*
-		blinkTimer -= Time.deltaTime;
-		if (blinkTimer<0) {
-			blinkTimer = blinkRate;
-			//blink
-			//renderer.material
-				// renderer.material.GetColor("_SpecColor");
-				// renderer.material.SetColor ("_TintColor", Color);
-
-			//iTween.ValueTo  (gameObject, iTween.Hash("from",blinkColorA,"to",1f, "speed",0.5f,"easetype", iTween.EaseType.easeOutBack));
-			//blinkColor2 = iTween.FloatUpdate( blinkColorA,  blinkColor2,  1);
-			workAlpha = startAlpha;
-			blinking = true;
-			goUp = true;
-		}
-			if(goUp){
-				workAlpha += Time.deltaTime; 
-				if (workAlpha>=1){
-					workAlpha = 1;
-					goUp= false;
-				}
-			}else{
-				workAlpha -= Time.deltaTime;
-				if(workAlpha < startAlpha ){
-					workAlpha = startAlpha;
-					}
-				}
-		*/
-
-		/*
-		blinkColor = renderer.material.GetColor("_TintColor");
-		float blinkColorA = blinkColor.a;
-		*/
 	}
 
 	//Get the orbital period of a planet, drawn from a random distribution

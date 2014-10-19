@@ -20,7 +20,8 @@ public class GameHandler : MonoBehaviour {
 	public bool probeInSpace = false;
 
 	void Start() {
-
+		rangeSprite.SetActive(false);
+		selectionSprite.SetActive(false);
 		//SelectedStar = GameObject.Find ("");
 	}
 
