@@ -7,6 +7,7 @@ public class UI : MonoBehaviour {
 
 	// For GUI Stuff
 	public Texture2D probeGUITexture;
+	public Texture2D menuButton;
 	public int probesLeftOffset = 10;
 	public int probesTopOffset = 10;
 	public float probeSize = 0.05f;
@@ -25,10 +26,16 @@ public class UI : MonoBehaviour {
 	}
 	
 	void OnGUI() {
-		
+
+		// Menu button
+		if (GUI.Button (new Rect (probeSpacingFromPercentage, probeSpacingFromPercentage, probeSizeFromPercentage, probeSizeFromPercentage), menuButton, GUIStyle.none)) {
+			Application.LoadLevel(0);
+		}
+
+		// Adding bar of probes
 		for (int i = 0; i < InputManaging.probesAmount; i++) {
 			
-			GUI.Label (new Rect ( probeSpacingFromPercentage + i*probeSizeFromPercentage, probeSpacingFromPercentage/2, probeSizeFromPercentage, probeSizeFromPercentage), probeGUITexture);
+			GUI.Label (new Rect (probeSpacingFromPercentage + i*probeSizeFromPercentage, Screen.height - (probeSpacingFromPercentage/2 + probeSizeFromPercentage), probeSizeFromPercentage, probeSizeFromPercentage), probeGUITexture);
 
 		}
 		
