@@ -20,6 +20,7 @@ public class GameHandler : MonoBehaviour {
 	public List<Star> selectedStars;
 	public bool probeInSpace = false;
 	public int nextLevel = 1;
+	public bool lostGame = false;
 
 	void Start() {
 		
@@ -92,40 +93,40 @@ public class GameHandler : MonoBehaviour {
 		
 	public void setSelectedStar(GameObject selStar)
 	{
-		float _scale = selStar.GetComponent<Star>().range;
-		_scale /= 5;
-		
-		rangeSprite.SetActive(true);
-		rangeSprite.GetComponent<activateSelection>().setRangeScale(_scale);
-		rangeSprite.GetComponent<activateSelection>().resetEffect();
-		selectionSprite.SetActive(true);
-		selectionSprite.GetComponent<activateSelection>().resetEffect();
+		trackGameOver();
+		if (lostGame== false){
+			float _scale = selStar.GetComponent<Star>().range;
+			_scale /= 5;
+			
+			rangeSprite.SetActive(true);
+			rangeSprite.GetComponent<activateSelection>().setRangeScale(_scale);
+			rangeSprite.GetComponent<activateSelection>().resetEffect();
+			selectionSprite.SetActive(true);
+			selectionSprite.GetComponent<activateSelection>().resetEffect();
 
-		SelectedStar = selStar;
-		selectionSprite.transform.position = SelectedStar.transform.position;
-		rangeSprite.transform.position = SelectedStar.transform.position;
+			SelectedStar = selStar;
+			selectionSprite.transform.position = SelectedStar.transform.position;
+			rangeSprite.transform.position = SelectedStar.transform.position;
 
-		//rangeSprite.transform.localScale = new Vector3(_scale,_scale,_scale);
-		audio.PlayOneShot(selectStarSound, 1); 
+			//rangeSprite.transform.localScale = new Vector3(_scale,_scale,_scale);
+			audio.PlayOneShot(selectStarSound, 1); 
 
-		for (var i = 0; i < selectedStars.Count ; i++) {
-			selectedStars[i].selSprite.SetActive(false);
-		}
-		selectedStars.Clear();//clear selected stars
+			for (var i = 0; i < selectedStars.Count ; i++) {
+				selectedStars[i].selSprite.SetActive(false);
+			}
+			selectedStars.Clear();//clear selected stars
 
-		List<Star> inReach = getStarsInReach(selStar) as List<Star>;	
-		for (var i = 0; i < inReach.Count; i++) {
-			if (inReach[i].selSprite!= null){
+			List<Star> inReach = getStarsInReach(selStar) as List<Star>;	
+			for (var i = 0; i < inReach.Count; i++) {
+				if (inReach[i].selSprite!= null){
 
-				if(inReach[i].connected == false){
-					inReach[i].selSprite.SetActive(true);
-					selectedStars.Add(inReach[i]); 
+					if(inReach[i].connected == false){
+						inReach[i].selSprite.SetActive(true);
+						selectedStars.Add(inReach[i]); 
+					}
 				}
 			}
 		}
-			//all el in reach activate ui shit
-			// tween
-			// deselect when unneeded
 	}
 	
 	public void captureStar (GameObject targetStar) {
@@ -183,10 +184,26 @@ public class GameHandler : MonoBehaviour {
 		selectionSprite.SetActive(false);
 
 	}
+	public void trackGameOver(){
+		if (probeInSpace == false && probesAmount <= 0){
+			//you lost/ are stuck
+			lostGame = true;			
+			rangeSprite.SetActive(false);
+			selectionSprite.SetActive(false);
 
-	void Update () {
-		if (probeInSpace == false){
+				
+			for (var i = 0; i < selectedStars.Count; i++) {
+				if (selectedStars[i].selSprite!= null){
+					selectedStars[i].selSprite.SetActive(false);
+				}
+			}
+
 
 		}
+
+
+	}
+	void Update () {
+		trackGameOver();
 	}
 }

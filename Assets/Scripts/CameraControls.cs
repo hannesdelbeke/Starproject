@@ -8,6 +8,7 @@ public class CameraControls: MonoBehaviour {
 
 	public float smoothing = 0.8f; // Set it under 1.0 to have a slow movement
 	public float dragSpeed = 2;
+	private Vector3 CameraTarget;
 	private Vector3 dragOrigin;
 
 	// Use this for initialization
@@ -27,8 +28,10 @@ public class CameraControls: MonoBehaviour {
 
 		// Repositions the camera torwards the selected star
 		if(InputManaging.SelectedStar)
-			transform.position = Vector3.Lerp (transform.position, InputManaging.SelectedStar.transform.position + cameraOffset, smoothing * Time.deltaTime);
-		else  {
+			CameraTarget = InputManaging.SelectedStar.transform.position;
+
+		transform.position = Vector3.Lerp (transform.position, CameraTarget + cameraOffset, smoothing * Time.deltaTime);
+	//	else  {
 			//no star selected drag camera
 
 			/*
@@ -54,6 +57,6 @@ public class CameraControls: MonoBehaviour {
 			
 			transform.Translate(move, Space.World);  
 */
-		}
+		//}
 	}
 }
