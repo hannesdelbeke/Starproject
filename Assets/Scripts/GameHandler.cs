@@ -4,7 +4,8 @@ using System.Collections.Generic;
 
 [RequireComponent(typeof(AudioSource))]
 public class GameHandler : MonoBehaviour {
-
+	
+	public float score = 0;
 	// get input touch
 	//if collides star set active
 	public GameObject SelectedStar; // each star keeps track of whats within range // if moving star then fire calculate range function on selection and keep doing it while selected
@@ -18,6 +19,7 @@ public class GameHandler : MonoBehaviour {
 	public AudioClip selectStarSound;
 	public List<Star> selectedStars;
 	public bool probeInSpace = false;
+	public int nextLevel = 1;
 
 	void Start() {
 		rangeSprite.SetActive(false);
@@ -125,13 +127,18 @@ public class GameHandler : MonoBehaviour {
 			// tween
 			// deselect when unneeded
 	}
-
+	
 	public void captureStar (GameObject targetStar) {
 		//setSelectedStar( targetStar);
 		//targetStar.renderer.material.color = Color.red;
 		//targetStar.GetComponent<Star>().connected = true; 
 		targetStar.GetComponent<Star>().connectStar(); 
 		probesAmount+= targetStar.GetComponent<Star>().getBonusProbes();
+		score += 1; 
+		if(targetStar.GetComponent<Star>().nextLevel )
+		{
+			Application.LoadLevel(nextLevel);
+		}
 		//audio.PlayOneShot(getStarSound, 1);
 	}
 

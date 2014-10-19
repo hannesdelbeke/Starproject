@@ -16,6 +16,7 @@ public class Star : MonoBehaviour {
 	public GameObject selSprite;
 	public GameObject capSprite;	
 	public int bonusprobes = 0 ;
+	public bool nextLevel = false;
 
     void Awake()	
 	{
